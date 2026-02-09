@@ -1,0 +1,435 @@
+================================================================================
+NLP EXPLORATORY DATA ANALYSIS REPORT
+Don't Patronize Me! Dataset
+Generated: 2026-02-08 18:59:57
+================================================================================
+================================================================================
+LOADING DATA
+================================================================================
+PCL Dataset Shape: (10469, 6)
+Categories Dataset Shape: (2760, 10)
+
+================================================================================
+1. BASIC STATISTICAL PROFILING
+================================================================================
+
+--- Token Count Analysis ---
+Total number of documents: 10468
+
+Token (Word) Statistics:
+  Average tokens per document: 48.63
+  Minimum tokens: 1
+  Maximum tokens: 910
+  Median tokens: 42.00
+  Std Dev: 29.17
+
+Character Statistics:
+  Average characters per document: 266.54
+  Minimum characters: 8
+  Maximum characters: 5493
+
+Sentence Statistics:
+  Average sentences per document: 1.97
+  Minimum sentences: 1
+  Maximum sentences: 42
+
+--- Vocabulary Analysis ---
+Total tokens in corpus: 453,476
+Unique vocabulary size: 32,913
+Type-Token Ratio (TTR): 0.0726
+
+--- Class Distribution (Label Analysis) ---
+
+Original Labels (0-4 scale):
+  Label 0: 8,529 (81.47%)
+  Label 1: 947 (9.05%)
+  Label 2: 144 (1.38%)
+  Label 3: 458 (4.37%)
+  Label 4: 391 (3.73%)
+
+Binary Classification (as per paper):
+  Non-PCL (labels 0,1): 9,476 (90.51%)
+  PCL (labels 2,3,4): 993 (9.49%)
+  Class Imbalance Ratio (Non-PCL:PCL): 9.54:1
+
+--- Keyword (Target Community) Distribution ---
+  migrant: 1,089 (10.40%)
+  in-need: 1,082 (10.34%)
+  vulnerable: 1,080 (10.32%)
+  homeless: 1,077 (10.29%)
+  women: 1,070 (10.22%)
+  refugee: 1,068 (10.20%)
+  immigrant: 1,061 (10.13%)
+  disabled: 1,028 (9.82%)
+  hopeless: 1,005 (9.60%)
+  poor-families: 909 (8.68%)
+
+--- Country Code Distribution (Top 15) ---
+  za: 549 (5.24%)
+  my: 546 (5.22%)
+  ph: 545 (5.21%)
+  pk: 545 (5.21%)
+  us: 543 (5.19%)
+  au: 541 (5.17%)
+  gb: 540 (5.16%)
+  ke: 539 (5.15%)
+  ie: 537 (5.13%)
+  ng: 537 (5.13%)
+  sg: 535 (5.11%)
+  ca: 530 (5.06%)
+  in: 530 (5.06%)
+  gh: 523 (5.00%)
+  nz: 518 (4.95%)
+
+================================================================================
+2. LEXICAL ANALYSIS
+================================================================================
+
+--- Most Common Words (All) ---
+  'the': 25,851
+  'to': 14,116
+  'of': 13,916
+  'and': 12,819
+  'in': 11,008
+  'a': 9,175
+  'for': 4,890
+  'that': 4,837
+  'is': 4,511
+  'are': 3,407
+  'on': 3,295
+  ''s': 3,106
+  'with': 3,021
+  'as': 2,987
+  'from': 2,631
+  'it': 2,583
+  'have': 2,372
+  'was': 2,286
+  'be': 2,241
+  'by': 2,230
+  'their': 2,170
+  'said': 2,160
+  'they': 2,008
+  'who': 1,996
+  'at': 1,975
+  'has': 1,914
+  'not': 1,842
+  'people': 1,840
+  'he': 1,821
+  'this': 1,733
+
+--- Most Common Words (Excluding Stopwords) ---
+  ''s': 3,106
+  'said': 2,160
+  'people': 1,840
+  'women': 1,705
+  'need': 1,344
+  'families': 1,341
+  'immigrants': 1,292
+  'vulnerable': 1,202
+  'poor': 1,173
+  'disabled': 1,123
+  'children': 1,038
+  'homeless': 1,031
+  'also': 984
+  'refugees': 965
+  'one': 905
+  'government': 835
+  'would': 809
+  'new': 805
+  'many': 788
+  'country': 746
+  'n't': 687
+  'us': 613
+  'year': 566
+  'help': 537
+  'hopeless': 535
+  'h': 510
+  'refugee': 508
+  'world': 501
+  'years': 494
+  'like': 485
+
+--- Bigram Analysis (Most Common Word Pairs) ---
+  ('of', 'the'): 2,706
+  ('in', 'the'): 2,422
+  ('to', 'the'): 1,313
+  ('in', 'need'): 1,025
+  ('poor', 'families'): 911
+  ('for', 'the'): 873
+  ('on', 'the'): 811
+  ('to', 'be'): 736
+  ('and', 'the'): 730
+  ('at', 'the'): 650
+  ('need', 'of'): 605
+  ('in', 'a'): 577
+  ('by', 'the'): 560
+  ('that', 'the'): 552
+  ('of', 'a'): 539
+  ('from', 'the'): 535
+  ('with', 'the'): 503
+  ('it', 'is'): 495
+  ('is', 'a'): 448
+  ('as', 'a'): 441
+  ('the', 'country'): 425
+  ('have', 'been'): 391
+  ('more', 'than'): 386
+  ('he', 'said'): 384
+  ('as', 'the'): 347
+
+--- Trigram Analysis (Most Common Word Triplets) ---
+  ('in', 'need', 'of'): 594
+  ('from', 'poor', 'families'): 230
+  ('one', 'of', 'the'): 190
+  ('those', 'in', 'need'): 162
+  ('as', 'well', 'as'): 153
+  ('the', 'united', 'states'): 145
+  ('the', 'number', 'of'): 135
+  ('the', 'most', 'vulnerable'): 122
+  ('in', 'the', 'country'): 114
+  ('are', 'in', 'need'): 111
+  ('some', 'of', 'the'): 105
+  ('according', 'to', 'the'): 101
+  ('need', 'of', 'a'): 88
+  ('poor', 'families', 'in'): 85
+  ('people', 'in', 'need'): 84
+  ('poor', 'families', 'and'): 83
+  ('men', 'and', 'women'): 81
+  ('he', 'said', 'the'): 80
+  ('in', 'order', 'to'): 76
+  ('per', 'cent', 'of'): 76
+  ('to', 'poor', 'families'): 75
+  ('of', 'poor', 'families'): 73
+  ('a', 'lot', 'of'): 72
+  ('for', 'poor', 'families'): 71
+  ('part', 'of', 'the'): 71
+
+--- Stop Word Analysis ---
+Total stop words: 192,519
+Stop word density: 42.45%
+Content word density: 57.55%
+
+--- Most Common Stop Words ---
+  'the': 25,851
+  'to': 14,116
+  'of': 13,916
+  'and': 12,819
+  'in': 11,008
+  'a': 9,175
+  'for': 4,890
+  'that': 4,837
+  'is': 4,511
+  'are': 3,407
+  'on': 3,295
+  'with': 3,021
+  'as': 2,987
+  'from': 2,631
+  'it': 2,583
+
+--- Word Length Distribution ---
+Average word length: 4.93 characters
+Median word length: 4.00 characters
+Word length frequency:
+  1 chars: 11,827 words
+  2 chars: 77,002 words
+  3 chars: 83,479 words
+  4 chars: 71,498 words
+  5 chars: 48,610 words
+  6 chars: 39,664 words
+  7 chars: 37,328 words
+  8 chars: 31,482 words
+  9 chars: 20,496 words
+  10 chars: 15,747 words
+  11 chars: 7,352 words
+  12 chars: 4,488 words
+  13 chars: 2,318 words
+  14 chars: 1,152 words
+  15 chars: 424 words
+
+================================================================================
+3. SEMANTIC & SYNTACTIC EXPLORATION
+================================================================================
+
+--- Part-of-Speech (POS) Analysis (sample of 1000 docs) ---
+
+POS Tag Distribution (Top 20):
+  NN (Noun (singular)): 6,384 (13.18%)
+  IN (Preposition): 5,785 (11.94%)
+  DT (Determiner): 4,138 (8.54%)
+  NNP (Proper Noun (singular)): 3,836 (7.92%)
+  NNS (Noun (plural)): 3,449 (7.12%)
+  JJ (Adjective): 3,426 (7.07%)
+  , (Other): 1,964 (4.05%)
+  . (Other): 1,865 (3.85%)
+  RB (Adverb): 1,634 (3.37%)
+  VB (Verb (base form)): 1,464 (3.02%)
+  CC (Coordinating Conjunction): 1,441 (2.97%)
+  VBD (Verb (past tense)): 1,355 (2.80%)
+  TO (to): 1,330 (2.74%)
+  PRP (Personal Pronoun): 1,324 (2.73%)
+  VBN (Verb (past participle)): 1,178 (2.43%)
+  VBZ (Verb (3rd person)): 1,078 (2.22%)
+  VBG (Verb (gerund)): 1,015 (2.09%)
+  VBP (Verb (non-3rd person)): 961 (1.98%)
+  CD (Cardinal Number): 906 (1.87%)
+  PRP$ (Possessive Pronoun): 593 (1.22%)
+
+Aggregate POS Statistics:
+  Total Nouns: 13,760 (28.40%)
+  Total Verbs: 7,051 (14.55%)
+  Total Adjectives: 3,702 (7.64%)
+  Noun-to-Verb Ratio: 1.95:1
+
+--- Named Entity Recognition (NER) Analysis ---
+
+Named Entity Distribution:
+  GPE: 474 (e.g., Ekso, Afghanistan, United States)
+  PERSON: 400 (e.g., Berkeley Bionics, Mohammad, Medicaid)
+  ORGANIZATION: 365 (e.g., Ekso, Exohiker, Central Railway)
+  GSP: 17
+  LOCATION: 11 (e.g., West, Mediterranean Sea, West Africa)
+  FACILITY: 2
+
+================================================================================
+4. NOISE AND ARTIFACT DETECTION
+================================================================================
+
+--- Duplicate Analysis ---
+Exact text duplicates: 0 (0.00%)
+Duplicate par_ids: 0
+
+--- Special Characters & HTML Artifacts ---
+  Special quotes: 2,599 documents (24.83%)
+    Example: 'White House press secretary Sean Spicer said that the focus of immigration actions would be illegal immigrants " who have also otherwise violated our ...'
+  HTML tags: 401 documents (3.83%)
+    Example: 'Apart from Pakistan and hosts England , Bangladesh disabled cricket team will also participate in the tournament . <h> Shahid Afridi bags 11 Man of th...'
+  HTML entities: 78 documents (0.75%)
+    Example: 'People who are homeless , those who were once homeless , those working with the homeless and concerned New Zealanders are being asked to share their e...'
+  Hashtags: 23 documents (0.22%)
+    Example: 'Pop star Marc Anthony , who was born in New York but whose parents are from Puerto Rico , sent a blistering tweet aimed at the US President telling hi...'
+  Mentions: 21 documents (0.20%)
+    Example: 'Ex-pat South African , Welsh and Irish immigrants living in the Taupo district will be treated to an exclusive meet &amp; greet evening at the Great L...'
+  URLs: 9 documents (0.09%)
+    Example: 'Under the 1st phase Viru Sara card will be given to 15,000 war heroes . In the future it will be given away to all fallen and disabled war heroes . Mo...'
+  Email addresses: 1 documents (0.01%)
+    Example: 'Ex-pat South African , Welsh and Irish immigrants living in the Taupo district will be treated to an exclusive meet &amp; greet evening at the Great L...'
+  Newlines/tabs: 0 documents (0.00%)
+  Multiple spaces: 0 documents (0.00%)
+  Non-ASCII chars: 0 documents (0.00%)
+  Numbers only: 0 documents (0.00%)
+
+--- Specific Pattern Detection ---
+Documents with questions: 563 (5.38%)
+Documents with exclamations: 127 (1.21%)
+Documents with quoted text: 3,305 (31.57%)
+
+--- Outlier Analysis (Sequence Length) ---
+Q1 (25th percentile): 30.00 tokens
+Q3 (75th percentile): 60.00 tokens
+IQR: 30.00
+Lower bound (Q1 - 1.5*IQR): 0.00
+Upper bound (Q3 + 1.5*IQR): 105.00
+Outliers (too short): 0 (0.00%)
+Outliers (too long): 462 (4.41%)
+
+--- Extreme Length Examples ---
+
+Shortest documents:
+  [1 tokens] 'refugees...'
+  [2 tokens] 'Feeling hopeless...'
+  [3 tokens] 'The Filipino immigrant...'
+  [3 tokens] 'Review refugee law...'
+  [3 tokens] 'Pretty much hopeless...'
+
+Longest documents:
+  [910 tokens] 'Dr Mayengbam Lalit Singh Recently honourable PM of India launched scheme called " Doubling Farmers '...'
+  [512 tokens] 'Most are from desperately poor Horn of Africa countries and like tens of thousands each year , were ...'
+  [424 tokens] 'Mahinda Wijesinghe , the Inspector General of the Ridiyagama Government Detention Centre states that...'
+  [394 tokens] 'ANNUAL State of Education Report ( ASER ) launched in Islamabad on Wednesday reveals some of the int...'
+  [276 tokens] 'The following is a brief history of the Rajneeshee movement and its controversies , as depicted in N...'
+
+Empty texts: 0
+Very short texts (≤3 tokens): 5
+
+================================================================================
+5. PCL CATEGORIES ANALYSIS
+================================================================================
+
+Total category annotations: 2,760
+
+--- PCL Category Distribution ---
+  Unbalanced_power_relations: 968 (35.07%)
+  Compassion: 682 (24.71%)
+  Presupposition: 296 (10.72%)
+  Authority_voice: 285 (10.33%)
+  Metaphors: 250 (9.06%)
+  Shallow_solution: 227 (8.22%)
+  The_poorer_the_merrier: 52 (1.88%)
+
+--- Annotator Agreement Distribution ---
+  1 annotator(s): 1,359 (49.24%)
+  2 annotator(s): 1,401 (50.76%)
+
+--- PCL Span Length Analysis ---
+Average span length: 91.42 characters
+Median span length: 78.00 characters
+Min span length: 6.00
+Max span length: 664.00
+
+--- Sample PCL Spans by Category ---
+
+Unbalanced_power_relations:
+  - 'help them communicate with others'
+  - 'who could provide support'
+  - 'We also know that they can benefit'
+
+Compassion:
+  - 'desperately in need of a helping hand'
+  - 'enable them to re-build their shattered lives'
+  - 'their catastrophic living conditions'
+
+Presupposition:
+  - 'Many refugees do n't want to be resettled anywhere , let alone in the US'
+  - 'not all scavenging children come from poor families'
+  - 'People do n't understand the hurt'
+
+Authority_voice:
+  - 'put their situation in perspective'
+  - 'plan for their needs and the needs of their child'
+  - 'desperately in need of a helping hand to enable them to re-build their shattered...'
+
+Metaphors:
+  - 'a helping hand'
+  - 're-build their shattered lives'
+  - 'break the cycle of poverty'
+
+================================================================================
+6. MODELING RECOMMENDATIONS
+================================================================================
+
+--- Based on EDA Findings ---
+
+⚠️  CLASS IMBALANCE DETECTED (Ratio: 9.5:1)
+   Recommendations:
+   - Use class weights in loss function
+   - Consider oversampling (SMOTE) or undersampling
+   - Use F1-score, not accuracy, as primary metric
+   - Consider focal loss for deep learning models
+
+📊 VOCABULARY SIZE: 32,913
+   Recommendations:
+   - Embedding dimension: 100-300 for this vocabulary size
+   - Consider pre-trained embeddings (GloVe, FastText) for better generalization
+
+🔤 STOP WORD DENSITY: 42.5%
+
+📝 GENERAL RECOMMENDATIONS:
+   - Max sequence length: Consider 95th percentile of token distribution
+   - For PCL detection: Context is crucial, use longer sequences
+   - Consider fine-tuning BERT/RoBERTa for this task
+   - Use stratified train/test split due to class imbalance
+   - Remove exact duplicates before splitting to avoid data leakage
+
+================================================================================
+EDA COMPLETE
+Results saved to: eda_results.txt
+================================================================================
