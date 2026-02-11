@@ -1,0 +1,26 @@
+{
+    "RoBERTa": {
+        "objective": 0.4788732394366197,
+        "hyperparameters": {
+            "learning_rate": 2.132434171951195e-05,
+            "weight_decay": 0.0798457371027612,
+            "class_weight_pos": 8.567344860075119
+        }
+    },
+    "DistilBERT": {
+        "objective": 0.39473684210526316,
+        "hyperparameters": {
+            "learning_rate": 2.1647883049730073e-05,
+            "weight_decay": 0.04910889965504239,
+            "class_weight_pos": 8.992252623188367
+        }
+    },
+    "DeBERTa": {
+        "objective": 0.0,
+        "hyperparameters": {
+            "learning_rate": 1.023843533490562e-05,
+            "weight_decay": 0.09078497329645818,
+            "class_weight_pos": 8.609598584900937
+        }
+    }
+}
