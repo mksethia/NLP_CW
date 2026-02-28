@@ -82,15 +82,16 @@ def load_data(logger):
     logger.log("=" * 80)
     
     # Load PCL dataset (skip first 4 rows which are disclaimer)
+    data_dir = 'Dont_Patronize_Me_Trainingset'
     pcl_columns = ['par_id', 'art_id', 'keyword', 'country_code', 'text', 'label']
-    df_pcl = pd.read_csv('dontpatronizeme_pcl.tsv', sep='\t', 
+    df_pcl = pd.read_csv(f'{data_dir}/dontpatronizeme_pcl.tsv', sep='\t', 
                           skiprows=4, names=pcl_columns, 
                           on_bad_lines='skip', engine='python')
     
     # Load categories dataset
     cat_columns = ['par_id', 'art_id', 'text', 'keyword', 'country_code', 
                    'span_start', 'span_finish', 'span_text', 'pcl_category', 'num_annotators']
-    df_cat = pd.read_csv('dontpatronizeme_categories.tsv', sep='\t',
+    df_cat = pd.read_csv(f'{data_dir}/dontpatronizeme_categories.tsv', sep='\t',
                           skiprows=4, names=cat_columns,
                           on_bad_lines='skip', engine='python')
     

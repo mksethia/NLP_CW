@@ -1,4 +1,5 @@
-.venv/*
-.venv
-Dont_Patronize_Me_Trainingset/results/*
-Dont_Patronize_Me_Trainingset/results
+.venv/
+Dont_Patronize_Me_Trainingset/results/
+BestModel/results/
+BestModel/figures/
+__pycache__/
