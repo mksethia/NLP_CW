@@ -1,0 +1,132 @@
+================================================================================
+  EDA REPORT — Don't Patronize Me! Dataset
+  Generated: 2026-02-28 23:44:26
+================================================================================
+
+  Loaded PCL dataset        : 10,469 rows x 7 cols
+  Loaded Categories dataset : 2,760 rows x 10 cols
+
+================================================================================
+TECHNIQUE 1 — Class Distribution & Imbalance Analysis
+================================================================================
+  Figure saved -> /home/mks23/nlp/eda/figures/technique1_class_distribution.png
+
+-- Analysis --
+  Total paragraphs : 10,469
+  Non-PCL (0-1)    : 9,476  (90.5%)
+  PCL     (2-4)    : 993  (9.5%)
+  Imbalance ratio  : 9.5 : 1
+
+  The dataset is heavily skewed: ~90% Non-PCL vs ~10% PCL.
+  Among the original 5-point scale, label 0 dominates (>80%).
+  PCL rates vary by keyword: some communities attract more
+  patronising language than others, suggesting keyword-dependent
+  linguistic patterns.
+
+-- Impact on Classification --
+* Accuracy alone is misleading (a majority-class baseline scores ~90%).
+  We must optimise and report F1-score (especially macro / weighted).
+* Training should use class-weighted loss or focal loss to up-weight the
+  minority PCL class.
+* Stratified train/dev/test splits are essential to preserve the ~10%
+  PCL proportion in every fold.
+* Keyword-conditioned PCL rates suggest the model may benefit from
+  keyword-aware features or conditioning, but also risk shortcut learning
+  if keyword tokens dominate the decision.
+
+================================================================================
+TECHNIQUE 2 — Lexical Contrast: PCL vs Non-PCL
+================================================================================
+  Figure saved -> /home/mks23/nlp/eda/figures/technique2_lexical_contrast.png
+  Figure saved -> /home/mks23/nlp/eda/figures/technique2_bigrams.png
+
+-- Analysis --
+  PCL vocabulary   : 7,358 unique content words (from 24,943 tokens)
+  Non-PCL vocabulary: 26,888 unique content words (from 221,138 tokens)
+
+  PCL-distinctive terms (highest log-odds):
+    fasting               log-odds = +3.335   (PCL freq 5, Non-PCL freq 0)
+    volunteerism          log-odds = +3.153   (PCL freq 4, Non-PCL freq 0)
+    dedication            log-odds = +3.153   (PCL freq 4, Non-PCL freq 0)
+    yong                  log-odds = +3.153   (PCL freq 4, Non-PCL freq 0)
+    wayside               log-odds = +2.930   (PCL freq 3, Non-PCL freq 0)
+    hailing               log-odds = +2.930   (PCL freq 3, Non-PCL freq 0)
+    sinful                log-odds = +2.930   (PCL freq 3, Non-PCL freq 0)
+    impairment            log-odds = +2.930   (PCL freq 3, Non-PCL freq 0)
+    akka                  log-odds = +2.930   (PCL freq 3, Non-PCL freq 0)
+    imo                   log-odds = +2.930   (PCL freq 3, Non-PCL freq 0)
+
+  Non-PCL-distinctive terms (lowest log-odds):
+    released              log-odds = -2.661   (PCL freq 0, Non-PCL freq 66)
+    illegal               log-odds = -2.611   (PCL freq 6, Non-PCL freq 445)
+    hopelessly            log-odds = -2.534   (PCL freq 3, Non-PCL freq 235)
+    issued                log-odds = -2.445   (PCL freq 0, Non-PCL freq 53)
+    election              log-odds = -2.445   (PCL freq 1, Non-PCL freq 107)
+    compared              log-odds = -2.427   (PCL freq 0, Non-PCL freq 52)
+    influx                log-odds = -2.408   (PCL freq 0, Non-PCL freq 51)
+    technology            log-odds = -2.408   (PCL freq 0, Non-PCL freq 51)
+    north                 log-odds = -2.388   (PCL freq 1, Non-PCL freq 101)
+    asked                 log-odds = -2.358   (PCL freq 1, Non-PCL freq 98)
+
+  The word clouds and log-odds analysis reveal that PCL paragraphs
+  tend to use more emotionally charged, paternalistic, or
+  pitying language, while Non-PCL paragraphs are more factual/neutral.
+  Bigram analysis highlights recurring patronising collocations.
+
+-- Impact on Classification --
+* Distinctive terms suggest the model can learn useful lexical cues, but
+  heavy reliance on single keywords risks brittle generalisation.
+* Word-cloud visual inspection confirms that stop-word removal is appropriate
+  for feature-based models, but transformer models should keep full text
+  for contextual understanding.
+* The log-odds vocabulary overlap between classes means simple bag-of-words
+  will struggle; contextual models (BERT / RoBERTa) that capture tone and
+  framing are strongly preferred.
+* Bigram patterns could inform data augmentation — e.g. paraphrasing PCL
+  bigrams to expand minority-class training examples.
+
+================================================================================
+TECHNIQUE 3 — Sequence-Length Distribution & max_length Selection
+================================================================================
+  Figure saved -> /home/mks23/nlp/eda/figures/technique3_length_distribution.png
+
+-- Percentile Table (token counts) --
+            All  PCL  Non-PCL
+Percentile                   
+P50          42   47       42
+P75          60   67       59
+P90          84   90       83
+P95         102  112      100
+P99         142  148      141
+
+-- Analysis --
+  Median length     : 42 tokens
+  Mean length       : 48.6 tokens
+  P95 (all)         : 102 tokens
+  P95 (PCL only)    : 112 tokens
+  Max length        : 910 tokens
+
+  The distribution is right-skewed: most paragraphs are short
+  (< 60 tokens) but a long tail extends beyond 200 tokens.
+  PCL paragraphs tend to be slightly longer than Non-PCL,
+  suggesting patronising writing is more verbose on average.
+  The CDF plot shows that a max_length at P95 captures the vast
+  majority of the text without wasting computation on outliers.
+
+-- Impact on Classification --
+* A max_length of ~102 tokens (P95) is a strong default for
+  transformer tokeniser truncation; it retains >=95% of paragraphs
+  in full while keeping GPU memory manageable.
+* Because PCL paragraphs skew longer, aggressive truncation risks
+  losing patronising content that appears later in the text.
+  If resources permit, increasing to P99 is safer for the minority class.
+* Very short paragraphs (< 10 tokens) are unlikely to carry enough
+  context for reliable PCL detection and may add noise; filtering or
+  special handling could improve precision.
+* The length difference between classes is a weak signal that could
+  complement lexical features in an ensemble, but should not be a
+  primary discriminator.
+
+================================================================================
+  EDA COMPLETE — figures saved in eda/figures/
+================================================================================
